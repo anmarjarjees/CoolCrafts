@@ -43,7 +43,7 @@ namespace CoolCrafts.WebSite.Controllers
 
         /*
         Adding the property for accessing the "productService" (no need for set)
-        remember that in index.cshtml.cs file we added the code:
+        remember that in ProductList.cshtml.cs file we added the code:
         
         public void OnGet()
         {
@@ -59,7 +59,7 @@ namespace CoolCrafts.WebSite.Controllers
         NOTE:
         we are using the class "Product" => <Product>
         so we need to import (using) it from the Models folder:
-        VSIDE will suggest: using CoolCrafts.WebSite.Models;
+        VS IDE will suggest: using CoolCrafts.WebSite.Models;
 
         */
 

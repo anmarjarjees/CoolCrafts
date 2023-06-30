@@ -50,7 +50,7 @@ namespace CoolCrafts.WebSite
             builder.Services.AddTransient<JsonFileProductService>();
 
             // Then building the app:
-            // app for building the application and adding the servecies (dependencies
+            // app for building the application and adding the services (dependencies)
             // what is called "Dependencies Injections"
             var app = builder.Build();
 
@@ -171,7 +171,7 @@ namespace CoolCrafts.WebSite
             */
             app.MapControllers();
 
-            // Runs the app:
+            // Finally: Runs the app:
             app.Run();
 
             /*

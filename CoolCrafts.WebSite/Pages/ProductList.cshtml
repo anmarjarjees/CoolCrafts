@@ -1,0 +1,122 @@
+﻿@page
+@model CoolCrafts.WebSite.Pages.ProductListModel
+@{
+    // staring our code inside this empty C# block:
+    // 1. adding the page title:
+    ViewData["Title"] = "Product List";
+}
+
+<h1>Product List</h1>
+
+
+<!-- Using "Model" as special keyword to access the "Products" -->
+<!-- The initial basic loop just for displaying the JSON contents: -->
+@*
+@foreach (var product in Model.Products)
+{
+    <h2>@product.Title</h2>
+}
+*@
+
+<!--
+    Then Adding the enhanced styled version with Bootstrap :-)
+
+    A card is a flexible and extensible content container.
+    It includes options for headers and footers,
+    a wide variety of content, contextual background colors, and powerful display options.
+    Link: https://getbootstrap.com/docs/5.3/components/card/
+
+    <div class="card">
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+    </div>
+  </div>
+-->
+<!--
+    Link: https://getbootstrap.com/docs/5.3/components/card/#card-groups
+-->
+<!--
+NOTE:
+adding our custom class "products" just for narrow down our CSS selection
+instead of "card-column" (Old Bootstrap class)
+-->
+<div class="row products">
+    <!-- looping through each product in the Products (product list): -->
+    @foreach (var product in Model.Products)
+    {
+        <!--
+            12 columns in total:
+            small-screen => 12 / 6 = 2 columns
+            medium and above => 12 / 4 = 3 columns
+
+            Link: https://github.com/anmarjarjees/bootstrap5-website-sample/blob/master/bs1-grid-system.html
+        -->
+        <div class="card col-sm-6 col-md-4">
+            <!--
+            Adding card for images
+                  Link: https://getbootstrap.com/docs/5.3/components/card/#example
+
+                  Also adding our custom CSS with inline styles:
+                  background-image from the JSON file also:
+                  using the razor syntax "at" to switch to C#
+                  in order to retrieve the image property
+                  using the loop varaible "product"
+            -->
+            <div class="card-img" style="background-image: url('@product.Image');">
+            </div>
+            <div class="card-body text-center">
+                <h4 class="card-title">@product.Title</h4>
+            </div>
+        </div>
+    }
+</div>
+
+<!--
+    one more :-)
+    Link: https://getbootstrap.com/docs/5.3/content/tables/
+
+-->
+
+@*  
+Sample:    
+    "Id": "jenlooper-cactus",
+    "Maker": "@jenlooper",
+    "img": "https://user-images.githubusercontent.com/41929050/61567048-13938600-aa33-11e9-9cfd-712191013192.jpeg",
+    "Url": "https://www.hackster.io/agent-hawking-1/the-quantified-cactus-an-easy-plant-soil-moisture-sensor-e65393",
+    "Title": "The Quantified Cactus: An Easy Plant Soil Moisture Sensor",
+    "Description":  "This project is a good learning project to get comfortable with soldering and programming an Arduino."
+*@
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Maker</th>
+            <th scope="col">Image</th>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Rating</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model.Products)
+        {
+        <!-- for each product in the Products (product list) creating a row with 6 cells for 6 JSON properties: -->
+        <tr>
+            <th scope="row">@product.Id</th>
+                <td>@product.Maker</td>
+                @*Notie the code below will not work as we need to use the img element to display an image!*@
+                @*<td>@product.Image</td>*@
+                <td><img class="w-100" src="@product.Image" alt="Product Image"></td>
+                <td>@product.Title</td>
+                <td>@product.Description</td>
+                @* Using a ternary operator below: *@
+                <td>@(product.Ratings!=null ? Convert.ToInt32(product.Ratings.Count()): String.Empty)</td>
+        </tr>           
+        }   
+    </tbody>
+</table>
+
+

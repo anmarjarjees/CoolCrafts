@@ -3,10 +3,35 @@ Please check:
 Link: https://learn.microsoft.com/en-us/aspnet/core/tutorials/razor-pages/page?view=aspnetcore-7.0&tabs=visual-studio#the--directive 
 *@
 
+@* @page => This is just a razor page using the @ sign "The Transition Character": *@
 @page
+
+@*
+@model => specify the "Model Type"" for this "Index" page
+using the "IndexModel" model class
+The "IndexModel" class is created inside the corresponding .cs file 
+which is inside "index.cshtml.cs" => open and check the file :-)
+*@
 @model IndexModel
+@* The script block for C# *@
 @{
+    // 1. using a dictionary object called "ViewData"
+    // 2. using the ViewData dictionary element with the id of "Title" 
+    // 3. assign the string value of "Home page" to that item "Title
+    // 4. In the runtime, the string "Home page" will be the document title in the browser tab
     ViewData["Title"] = "Home page";
+
+    /*
+     * Let's work with date and time in C#:
+     * to calcualte how long ASP.NET was running:
+     * The current date (now) - the released date
+     * Initial release: January 5, 2002; 21 years ago
+     * Link: https://en.wikipedia.org/wiki/ASP.NET
+     
+     * Defining a varaible "aspYears" Using TimeSpane class
+     * DateTime(YYYY, MM, DD)
+    */
+    TimeSpan aspYears = DateTime.Now - new DateTime(2002, 1, 5);
 }
 
 <div class="text-center">
@@ -15,73 +40,16 @@ Link: https://learn.microsoft.com/en-us/aspnet/core/tutorials/razor-pages/page?v
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 
     <!-- Adding C# syntax inside at{ } and will run in the server side! -->
-    <h1>@{ }</h1>
+    @{
+        string myHeading1 = "It's nice to learn about ASP.NET, don't you think so!";
+    }
+
+    <!-- Adding just the symbol "at" for one line of code :-) -->
+    <h1>@myHeading1</h1>
+    <!-- years = days/365 -->
+    <p>Do you know that it has been @Convert.ToInt32(aspYears.TotalDays/365) years and exactly @Convert.ToInt32(aspYears.TotalDays) days since ASP.NET has been released :-)</p>
 </div>
 
-<!-- Using "Model" as special keyword to access the "Products" -->
-<!-- The initial basic loop just for displaying the JSON contents: -->
 
-@*
-@foreach (var product in Model.Products)
-{
-    <h2>@product.Title</h2>
-}
-*@
-
-<!--
-    Then Adding the enhnced styled version with Bootstrap :-)
-
-    A card is a flexible and extensible content container.
-    It includes options for headers and footers,
-    a wide variety of content, contextual background colors, and powerful display options.
-    Link: https://getbootstrap.com/docs/5.3/components/card/
-
-    <div class="card">
-    <img src="..." class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-      <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-    </div>
-  </div>
--->
-
-<!-- 
-    Link: https://getbootstrap.com/docs/5.3/components/card/#card-groups
--->
-
-<!-- 
-adding our custom class "products" just for narrow down our CSS selection
-instead of "card-column" (old BS class)
--->
-<div class="row products">
-@foreach (var product in Model.Products)
-{
-        <!-- 
-            12 columns in total:
-            small-screen => 12 / 6 = 2 columns
-            medium and above => 12 / 4 = 3 columns
-
-            Link: https://github.com/anmarjarjees/bootstrap5-website-sample/blob/master/bs1-grid-system.html
-        -->
-    <div class="card col-sm-6 col-md-4">
-        <!--
-        Adding card for images 
-              Link: https://getbootstrap.com/docs/5.3/components/card/#example
-
-              Also adding our custom CSS with inline styles:
-              background-image from the JSON file also:
-              using the razor syntax "at" to switch to C# 
-              in order to retrieve the image property
-              using the loop varaible "product" 
-        -->
-            <div class="card-img" style="background-image: url('@product.Image');">
-            </div>
-            <div class="card-body text-center">
-                    <h4 class="card-title">@product.Title</h4>
-            </div>
-    </div>
-}
-</div>
 
 

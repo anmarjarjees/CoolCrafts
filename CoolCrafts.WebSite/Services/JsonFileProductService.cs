@@ -96,7 +96,8 @@ namespace CoolCrafts.WebSite.Services
              */
         }
 
-        // Another code for AddRating for the final part
+        // Another code for AddRating for the final part:
+        /*
         public void AddRating(string productId, int rating)
         {
             var products = GetProducts();
@@ -125,5 +126,6 @@ namespace CoolCrafts.WebSite.Services
                 products
             );
         }
+        */
     }
 }
