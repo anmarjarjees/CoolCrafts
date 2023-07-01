@@ -2,6 +2,7 @@
 using CoolCrafts.WebSite.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+
 // Adding the controller to fetch the JSON data to be connected to the front page view 
 // Link: https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis?view=aspnetcore-7.0
 namespace CoolCrafts.WebSite.Controllers
@@ -13,10 +14,20 @@ namespace CoolCrafts.WebSite.Controllers
     - [Route] => specifies URL pattern for a controller or action.
     - [ApiController] => makes attribute routing a requirement.
     
-    By default, ASP.NET will generate: [Route("api/[controller]")]
+    By default, ASP.NET will generate the following attributes: 
+    > [Route("api/[controller]")]
+    > [ApiController]
     */
-    // [Route("api/[controller]")]
-    // modify it to any route (url) we need:
+
+
+
+    /*
+    NOTE:
+    =====
+    > [Route("api/[controller]")] <= Default Generated Code => api/products
+    > for simplicity, we can just make it /[controller] => /products
+    > modify it to any route (url) we need:
+    */
     [Route("[controller]")]
     [ApiController]
     /*
@@ -34,8 +45,8 @@ namespace CoolCrafts.WebSite.Controllers
         which where all our products come from
 
         so we can pass the "JsonFileProductService" as an argument to the constructor:
-        we need to import "using" them
-         */
+        we need to import "using" them: using CoolCrafts.WebSite.Services;
+        */
         public ProductsController(JsonFileProductService productService)
         {
             this.ProductService = productService;
@@ -43,24 +54,29 @@ namespace CoolCrafts.WebSite.Controllers
 
         /*
         Adding the property for accessing the "productService" (no need for set)
-        remember that in ProductList.cshtml.cs file we added the code:
+
+        NOTE:
+        Remember that in ProductList.cshtml.cs file we have the code:
         
         public void OnGet()
         {
 
         }
+
+        for getting the page contents, so here alos just need the getter
         */
         public JsonFileProductService ProductService { get; }
 
         /*
         Adding another method that returns the list of products
         adding the attribute: HttpGet
+        when we type Http => Vs IDE will give us the type of the HTTP request 
+        which is "Get" in our case
 
         NOTE:
         we are using the class "Product" => <Product>
         so we need to import (using) it from the Models folder:
         VS IDE will suggest: using CoolCrafts.WebSite.Models;
-
         */
 
         [HttpGet]

@@ -14,7 +14,7 @@ namespace CoolCrafts.WebSite
             Microsoft.AspNetCore.Builder.WebApplication
 
             The following lines of code in this file create a WebApplicationBuilder
-            with preconfigured defaults, add Razor Pages support 
+            with pre-configured defaults, add Razor Pages support 
             to the Dependency Injection (DI) container, 
             Link: https://learn.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-7.0
              */
@@ -25,8 +25,10 @@ namespace CoolCrafts.WebSite
             // Add services to the container.
             builder.Services.AddRazorPages();
 
+            
             /*
-            IMPORTNAT NOTE (Our personal code):
+            IMPORTANT NOTE (Our personal code):
+            ***********************************
             Below adding our custom code for our service
             which is the connection to our JSON File:
 
@@ -136,9 +138,11 @@ namespace CoolCrafts.WebSite
             */
 
             /*
-            IMPORTANT NOTE: 
+            IMPORTANT NOTE:
+            ***************
             Please consider commenting this block of code 
             we don't need it anymore after adding the dedicated controller code
+            The "Controller" for MVC idea
             Otherwise error: 
             AmbiguousMatchException: The request matched multiple endpoints. Matches:
             */
@@ -154,7 +158,7 @@ namespace CoolCrafts.WebSite
                 var products = app.Services.GetService<JsonFileProductService>().GetProducts();
                 /*
                 - getting the json variable => serialize all its products (objects)
-                - of type IEnumerable (any type of collection)
+                - of type IEnumerable (IEnumerable refers to any type of collection/list)
                 - <Product> refers to the Product.cs in the Models
                 - we have to "using" the model: using CoolCrafts.WebSite.Models;
                  * /
@@ -164,14 +168,19 @@ namespace CoolCrafts.WebSite
             */
 
             /*
-            NOTE: 
-            Please be advised that is line of code is needed after adding our controller:
+            NOTES: 
+            1. Please be advised that is line of code is needed after adding our controller:
             Mapping to our controller
+
+            2. MapControllers() method => will refer to the /products
+            because our controller file is named "ProductsController"
+
             Then you can test it :-) https://localhost:7018/products
             */
             app.MapControllers();
 
-            // Finally: Runs the app:
+            
+            // Finally the default code: Runs the app:
             app.Run();
 
             /*

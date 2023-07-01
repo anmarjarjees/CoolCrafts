@@ -61,7 +61,8 @@ namespace CoolCrafts.WebSite.Models
         */
 
         /*
-        JsonSerializer: static partial class
+        JsonSerializer: static partial class:
+        *************************************
         Provides functionality to serialize objects or value types to JSON 
         and deserialize JSON into objects or value types.
 
