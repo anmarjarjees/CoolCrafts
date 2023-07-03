@@ -11,16 +11,17 @@ namespace CoolCrafts.WebSite.Services
     {
         /*
         the class constructor: 
-        IWebHostEnvironment interface type: the hosting environment for running our ASP application
+        IWebHostEnvironment interface type: 
+        the hosting environment for running our ASP application
+        
         like a Console app! ASP.NET is acting like a Console Application
         having the Main() method to launch the app
-
         */
         public JsonFileProductService(IWebHostEnvironment webHostEnvironment)
         {
             /*
-             WebHostEnvironment for grabbing the product.json file from "data" folder 
-            from "wwwroot"
+             WebHostEnvironment for grabbing the product.json file 
+            from "data" folder which is inside the "wwwroot" folder
 
             instead of hard coding this: wwwroot => data => product.json
 
@@ -30,29 +31,37 @@ namespace CoolCrafts.WebSite.Services
         }
 
         /*
-         Just keep/get the WebHostEnvironment for getting the data from the JSON file
-          again instead of hard coding this: wwwroot => data => product.json
+        WebHostEnvironment Property:
+        ---------------------------
+        Just keep/get the WebHostEnvironment for getting the data from the JSON file
+        
+        Again instead of hard coding this: wwwroot => data => product.json
          */
         public IWebHostEnvironment WebHostEnvironment { get; }
 
         /*
+        JsonFileName Property:
+        ---------------------
         We make a property named "JsonFileName" to return the path for our JSON file
+        
         The property "JsonFileName" will retrieve the location
-        to the variable "WebHostEnvironment"
-        Using the short version
+        to the variable "WebHostEnvironment" using the short version
         
         WebRootPath property will take care of changing the path dynamically
         based on the location for our data source in any drive in computer or platform
 
-        then combining the three parts:
+        Finally combining the three parts together:
+        - WebHostEnvironment => your full local project path or the online url
         - WebRootPath => wwwroot
         - data => the data folder
         - "products.json" => the JSON file inside "data"
          */
         private string JsonFileName => Path.Combine(WebHostEnvironment.WebRootPath, "data", "products.json");
 
-        // the long one: Normal Property Block:
-        /*private string JsonFileName
+        
+        // NOTE: The long one: Normal Property Block:
+        /*
+        private string JsonFileName
         {
             get { 
                 return Path.Combine(WebHostEnvironment.WebRootPath, "data", "products.json"); 
@@ -95,6 +104,8 @@ namespace CoolCrafts.WebSite.Services
             Link: https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/nullable-warnings?f1url=%3FappId%3Droslyn%26k%3Dk(CS8603)#possible-null-assigned-to-a-nonnullable-reference
              */
         }
+
+
 
         // Another code for AddRating for the final part:
         /*

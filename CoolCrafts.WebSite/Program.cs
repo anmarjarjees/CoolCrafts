@@ -13,7 +13,9 @@ namespace CoolCrafts.WebSite
             Constructing a web application from  
             Microsoft.AspNetCore.Builder.WebApplication
 
-            The following lines of code in this file create a WebApplicationBuilder
+            The following lines of code in this file 
+            create a WebApplicationBuilder
+            
             with pre-configured defaults, add Razor Pages support 
             to the Dependency Injection (DI) container, 
             Link: https://learn.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-7.0
@@ -22,12 +24,17 @@ namespace CoolCrafts.WebSite
             // builder has configuration, logging, and many other services added to the DI container:
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
+            /*
+            Registration of the dependency in a service container. 
+            ASP.NET Core provides a built-in service container, IServiceProvider.
+            Services are typically registered in the app's Program.cs file.
+            */
+            // Add services to the service container.
             builder.Services.AddRazorPages();
 
             
             /*
-            IMPORTANT NOTE (Our personal code):
+            IMPORTANT NOTE (Adding our personal code):
             ***********************************
             Below adding our custom code for our service
             which is the connection to our JSON File:

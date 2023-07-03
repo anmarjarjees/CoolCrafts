@@ -8,18 +8,22 @@ using Microsoft.AspNetCore.Mvc;
 namespace CoolCrafts.WebSite.Controllers
 {
     /*
-    The Microsoft.AspNetCore.Mvc namespace provides attributes 
-    that can be used to configure the behavior of web API controllers and action methods:
+    1. Any custom controller we create in our example "ProductsController",
+    must extends the built-in one "ControllerBase"
     
-    - [Route] => specifies URL pattern for a controller or action.
-    - [ApiController] => makes attribute routing a requirement.
+    2. The Microsoft.AspNetCore.Mvc namespace provides attributes 
+    These attribute are needed to configure the behavior of web API controllers and action methods:
+    
+    - [Route] => specifies URL pattern for a specific controller or action.
+    - [ApiController] => makes/Adds many features like:
+        > Attribute routing requirement
+        > Automatic HTTP 400 responses
+    Link: https://learn.microsoft.com/en-us/aspnet/core/web-api/?view=aspnetcore-7.0#apicontroller-attribute
     
     By default, ASP.NET will generate the following attributes: 
     > [Route("api/[controller]")]
     > [ApiController]
     */
-
-
 
     /*
     NOTE:
@@ -63,18 +67,29 @@ namespace CoolCrafts.WebSite.Controllers
 
         }
 
-        for getting the page contents, so here alos just need the getter
+        for getting the page contents, so here also just need the getter
         */
         public JsonFileProductService ProductService { get; }
 
         /*
-        Adding another method that returns the list of products
-        adding the attribute: HttpGet
-        when we type Http => Vs IDE will give us the type of the HTTP request 
-        which is "Get" in our case
+        1.Adding another method that returns the list of products
+        By convention the API request method is named "Get()"
+        or starts with Get...
 
-        NOTE:
-        we are using the class "Product" => <Product>
+        2.Adding the attribute: [HttpGet]
+        when we type Http => VS IDE will give us the type of the HTTP request 
+        which is "Get" in our case
+        
+
+        NOTES:
+        ======
+        1. Notice that the attribute [HttpGet] in this example is optional!
+        Because WEB API supports naming convention,
+        since our method name is Get or starts with Get
+        and we only have one "Get" method in this controller
+        ASP will assume that we are using HTTP Get Request
+        
+        2. We are using the class "Product" => <Product>
         so we need to import (using) it from the Models folder:
         VS IDE will suggest: using CoolCrafts.WebSite.Models;
         */
@@ -84,5 +99,29 @@ namespace CoolCrafts.WebSite.Controllers
         {
             return ProductService.GetProducts(); ;
         }
+
+        /*
+        IMPORTANT NOTE:
+        ===============
+        Problem:
+        In case if you have more than one get method and all have this attribute:
+        [HttpGet]
+        You will receive an error as ASP will be confused which method to call
+        for the HTTP Get Request?
+
+        Solution:
+        We need to add the routing url string.
+
+        Solution Examples:
+        1. In one line:
+        [HttpGet("GetAllUsers")]
+        
+        2. In two lines:
+        [HttpGet]
+        [Route("GetAllUsers"]
+
+        > 
+
+        */
     } // class
 } // namespace

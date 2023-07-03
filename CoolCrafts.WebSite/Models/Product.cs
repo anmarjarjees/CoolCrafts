@@ -16,6 +16,12 @@ namespace CoolCrafts.WebSite.Models
          */
 
         // type prop then TAB (keep taping for modifying):
+        /*
+        Notice we can add ? => string?
+        or set a default value
+        { get; set; } = "";
+        Refer to my C# course for more details
+         */
         public string? Id { get; set; }
         /*
          public string Id { get; set; }
