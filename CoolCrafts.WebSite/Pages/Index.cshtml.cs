@@ -10,7 +10,7 @@ namespace CoolCrafts.WebSite.Pages
     Razor Pages are derived from PageModel. 
     By convention, the PageModel derived class is named PageNameModel. 
     For example, the Index page is named IndexModel.
-     */
+    */
     public class IndexModel : PageModel
     {
         /*
@@ -30,7 +30,8 @@ namespace CoolCrafts.WebSite.Pages
         // The default constructor: 
         public IndexModel(ILogger<IndexModel> logger)
         {
-            _logger = logger; // from the boilerplate (doesn't do anything)
+            // from the boilerplate (doesn't do anything in our current example):
+            _logger = logger; 
         }
 
         // Below is the default content: just empty OnGet() method:

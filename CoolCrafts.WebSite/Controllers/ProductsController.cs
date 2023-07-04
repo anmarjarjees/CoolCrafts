@@ -9,7 +9,7 @@ namespace CoolCrafts.WebSite.Controllers
 {
     /*
     1. Any custom controller we create in our example "ProductsController",
-    must extends the built-in one "ControllerBase"
+    must extend the built-in one "ControllerBase"
     
     2. The Microsoft.AspNetCore.Mvc namespace provides attributes 
     These attribute are needed to configure the behavior of web API controllers and action methods:
@@ -30,6 +30,11 @@ namespace CoolCrafts.WebSite.Controllers
     =====
     > [Route("api/[controller]")] <= Default Generated Code => api/products
     > for simplicity, we can just make it /[controller] => /products
+    
+    Reason:
+    Because our controller name is "ProductsController" which is "Products" + "Controller",
+    ASP will assume that the route [controller] is /products
+
     > modify it to any route (url) we need:
     */
     [Route("[controller]")]
@@ -119,9 +124,6 @@ namespace CoolCrafts.WebSite.Controllers
         2. In two lines:
         [HttpGet]
         [Route("GetAllUsers"]
-
-        > 
-
         */
     } // class
 } // namespace

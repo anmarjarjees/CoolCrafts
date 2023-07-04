@@ -41,7 +41,7 @@ namespace CoolCrafts.WebSite
 
             We can do it using one of the two major ones to identify the service lifetime:
             - AddSingleton:
-            services are created just at the first time they are requested 
+            services are created just the first time they are requested 
             (or when ConfigureServices is run if you specify an instance there) 
             and then every subsequent request will use the same instance.
             
