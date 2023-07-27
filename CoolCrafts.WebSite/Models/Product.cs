@@ -18,10 +18,13 @@ namespace CoolCrafts.WebSite.Models
         // type prop then TAB (keep taping for modifying):
         /*
         Notice we can add ? => string?
-        or set a default value
+        The question mark after string indicates that the property is nullable.
+
+        or you can set a default value
         { get; set; } = "";
-        Refer to my C# course for more details
-         */
+        Refer to my C# course and code examples for more details
+        Link: https://learn.microsoft.com/en-us/dotnet/csharp/nullable-references
+        */
         public string? Id { get; set; }
         /*
          public string Id { get; set; }
