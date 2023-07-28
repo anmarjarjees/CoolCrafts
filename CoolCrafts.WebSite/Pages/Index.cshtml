@@ -19,6 +19,12 @@ which is inside "index.cshtml.cs" => open and check the file :-)
     // 2. using the ViewData dictionary element with the id of "Title" 
     // 3. assign the string value of "Home page" to that item "Title
     // 4. In the runtime, the string "Home page" will be the document title in the browser tab
+    /*
+     * IMPORTANT NOTES:
+     * ***************
+     * > The "ViewData" dictionary is a dynamic object, which means any type can be used. 
+     * > The ViewData object has no defined properties until something is added
+     */
     ViewData["Title"] = "Home page";
 
     /*
