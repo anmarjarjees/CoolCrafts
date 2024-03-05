@@ -1,20 +1,36 @@
 ﻿@page
 @model CoolCrafts.WebSite.Pages.ProductListModel
+
+@*
+Starting our code inside this page:
+***********************************
+To recap:
+as we do with PHP by adding <?php ?> for any php code,
+in razor pages, we use @{ and } for C# code :-)
+*@
+
 @{
-    // staring our code inside this empty C# block:
+    // Starting our code inside this empty C# block:
+    string mainTitle = "ASP.NET Web Core JSON Demo";
+}
+
+<h1>@mainTitle</h1>
+
+@{
+    // starting our code inside this empty C# block:
     // 1. adding the page title:
     ViewData["Title"] = "Product List";
 }
 
-<h1>Product List</h1>
 
+<h2>Product List</h2>
 
 <!-- Using "Model" as special keyword to access the "Products" -->
 <!-- The initial basic loop just for displaying the JSON contents: -->
 @*
 @foreach (var product in Model.Products)
 {
-    <h2>@product.Title</h2>
+<h2>@product.Title</h2>
 }
 *@
 
@@ -48,23 +64,23 @@ instead of "card-column" (Old Bootstrap class)
     @foreach (var product in Model.Products)
     {
         <!--
-            12 columns in total:
-            small-screen => 12 / 6 = 2 columns
-            medium and above => 12 / 4 = 3 columns
+                                                12 columns in total:
+                                                small-screen => 12 / 6 = 2 columns
+                                                medium and above => 12 / 4 = 3 columns
 
-            Link: https://github.com/anmarjarjees/bootstrap5-website-sample/blob/master/bs1-grid-system.html
-        -->
+                                                Link: https://github.com/anmarjarjees/bootstrap5-website-sample/blob/master/bs1-grid-system.html
+                                            -->
         <div class="card col-sm-6 col-md-4">
             <!--
-            Adding card for images
-                  Link: https://getbootstrap.com/docs/5.3/components/card/#example
+                                                Adding card for images
+                                                      Link: https://getbootstrap.com/docs/5.3/components/card/#example
 
-                  Also adding our custom CSS with inline styles:
-                  background-image from the JSON file also:
-                  using the razor syntax "at" to switch to C#
-                  in order to retrieve the image property
-                  using the loop varaible "product"
-            -->
+                                                      Also adding our custom CSS with inline styles:
+                                                      background-image from the JSON file also:
+                                                      using the razor syntax "at" to switch to C#
+                                                      in order to retrieve the image property
+                                                      using the loop varaible "product"
+                                                -->
             <div class="card-img" style="background-image: url('@product.Image');">
             </div>
             <div class="card-body text-center">
@@ -80,14 +96,14 @@ instead of "card-column" (Old Bootstrap class)
 
 -->
 
-@*  
-Sample:    
-    "Id": "jenlooper-cactus",
-    "Maker": "@jenlooper",
-    "img": "https://user-images.githubusercontent.com/41929050/61567048-13938600-aa33-11e9-9cfd-712191013192.jpeg",
-    "Url": "https://www.hackster.io/agent-hawking-1/the-quantified-cactus-an-easy-plant-soil-moisture-sensor-e65393",
-    "Title": "The Quantified Cactus: An Easy Plant Soil Moisture Sensor",
-    "Description":  "This project is a good learning project to get comfortable with soldering and programming an Arduino."
+@*
+Sample:
+"Id": "jenlooper-cactus",
+"Maker": "@jenlooper",
+"img": "https://user-images.githubusercontent.com/41929050/61567048-13938600-aa33-11e9-9cfd-712191013192.jpeg",
+"Url": "https://www.hackster.io/agent-hawking-1/the-quantified-cactus-an-easy-plant-soil-moisture-sensor-e65393",
+"Title": "The Quantified Cactus: An Easy Plant Soil Moisture Sensor",
+"Description": "This project is a good learning project to get comfortable with soldering and programming an Arduino."
 *@
 <table class="table">
     <thead>
@@ -103,9 +119,9 @@ Sample:
     <tbody>
         @foreach (var product in Model.Products)
         {
-        <!-- for each product in the Products (product list) creating a row with 6 cells for 6 JSON properties: -->
-        <tr>
-            <th scope="row">@product.Id</th>
+            <!-- for each product in the Products (product list) creating a row with 6 cells for 6 JSON properties: -->
+            <tr>
+                <th scope="row">@product.Id</th>
                 <td>@product.Maker</td>
                 @*Notie the code below will not work as we need to use the img element to display an image!*@
                 @*<td>@product.Image</td>*@
@@ -113,10 +129,8 @@ Sample:
                 <td>@product.Title</td>
                 <td>@product.Description</td>
                 @* Using a ternary operator below: *@
-                <td>@(product.Ratings!=null ? Convert.ToInt32(product.Ratings.Count()): String.Empty)</td>
-        </tr>           
-        }   
+                <td>@(product.Ratings != null ? Convert.ToInt32(product.Ratings.Count()) : String.Empty)</td>
+            </tr>
+        }
     </tbody>
 </table>
-
-
